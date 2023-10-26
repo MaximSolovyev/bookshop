@@ -53,9 +53,10 @@ const InternalErrorPage = React.lazy(() =>
   )
 );
 
-const ProfilePage = React.lazy(
-  // @ts-expect-error – No types, yet.
-  () => import(/* webpackChunkName: "Admin_profilePage" */ './ProfilePage')
+const ProfilePage = React.lazy(() =>
+  import(/* webpackChunkName: "Admin_profilePage" */ './ProfilePage').then((mod) => ({
+    default: mod.ProfilePage,
+  }))
 );
 const SettingsPage = React.lazy(() =>
   // @ts-expect-error – No types, yet.
